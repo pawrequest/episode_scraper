@@ -10,6 +10,7 @@ dependencies = [
     "sqlmodel>=0.0.14",
     "loguru>=0.7.2",
     "beautifulsoup4>=4.12.2",
+    "python-dateutil>=2.8.2",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"

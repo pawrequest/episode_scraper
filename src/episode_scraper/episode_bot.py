@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import asyncio
+import os
 from typing import AsyncGenerator
 
 from aiohttp import ClientSession
 from sqlmodel import Session, select
 from loguru import logger
 
-from .config import DEBUG, MAIN_URL, MAX_DUPES, SLEEP
+from .config import DEBUG, MAX_DUPES, SLEEP
 from .soups import MainSoup
 from .episode_model import Episode, EpisodeBase
 
@@ -25,7 +26,8 @@ class EpisodeBot:
 
     @classmethod
     async def from_config(cls, sql_session: Session, aio_session: ClientSession) -> EpisodeBot:
-        main_soup = await MainSoup.from_url(MAIN_URL, aio_session)
+        url = os.environ.get("MAIN_URL")
+        main_soup = await MainSoup.from_url(url, aio_session)
         return cls(sql_session, aio_session, main_soup)
 
     @classmethod
