@@ -1,0 +1,26 @@
+[project]
+name = "episode-scraper"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "paw", email = "paw@pawrequest.com" }
+]
+dependencies = [
+    "aiohttp>=3.9.1",
+    "sqlmodel>=0.0.14",
+    "loguru>=0.7.2",
+    "beautifulsoup4>=4.12.2",
+]
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
