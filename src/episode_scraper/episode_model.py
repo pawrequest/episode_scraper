@@ -45,19 +45,6 @@ class EpisodeLogger:
         new_msg += episodes_log_msg(eps)
         logger.info(new_msg)
 
-    # def log_episodes1(self, eps: Sequence[EpisodeBase], calling_func=None, msg: str = "", bot_name="General"):
-    #     """Logs the first 3 episodes and the last 2 episodes of a sequence episodes"""
-    #     if not eps:
-    #         return
-    #     if calling_func:
-    #         calling_f = calling_func.__name__
-    #     else:
-    #         calling_f = f"{inspect.stack()[1].function} INSPECTED, YOU SHOULD PROVIDE THE FUNC"
-    #
-    #     new_msg = f"{msg} {len(eps)} Episodes in {calling_f}():\n"
-    #     new_msg += episodes_log_msg(eps)
-    #     logger.info(new_msg)
-
 
 class EpisodeBase(SQLModel, EpisodeLogger):
     url: str = Field(index=True)
