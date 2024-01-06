@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Sequence, TYPE_CHECKING
+from typing import Sequence
 
-from gurupod.core.consts import HTML_TITLE
 from loguru import logger
 
-if TYPE_CHECKING:
-    from gurupod.models.episode import EpisodeBase
+from episode_scraper import EpisodeBase
+from episode_scraper.config import HTML_TITLE
 
 
 class EpisodeWriter(ABC):
