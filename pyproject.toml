@@ -1,16 +1,17 @@
 [project]
 name = "episode-scraper"
 version = "0.1.0"
-description = "Add your description here"
+description = "Scrape Episodes"
 authors = [
     { name = "paw", email = "paw@pawrequest.com" }
 ]
 dependencies = [
-    "aiohttp>=3.9.1",
-    "sqlmodel>=0.0.14",
-    "loguru>=0.7.2",
-    "beautifulsoup4>=4.12.2",
-    "python-dateutil>=2.8.2",
+    "aiohttp",
+    "sqlmodel",
+    "loguru",
+    "beautifulsoup4",
+    "python-dateutil",
+    "pawsupport @ git+https://github.com/pawrequest/pawsupport",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
@@ -21,7 +22,10 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    'pytest',
+    'pytest-asyncio',
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
