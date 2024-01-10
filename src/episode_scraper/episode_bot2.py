@@ -8,10 +8,14 @@ from aiohttp import ClientSession
 from sqlmodel import SQLModel, Session, select
 from loguru import logger
 
+from .episode_db_model import Episode
 from .soups import MainSoup
 
+# if TYPE_CHECKING:
+#     from .episode_model import Episode, EpisodeBase
+
 SLEEP = os.environ.get("SCRAPER_SLEEP", 60 * 10)
-EpisodeType: type[SQLModel] = None
+# Episode: type[SQLModel]
 MAX_DUPES = os.environ.get("MAX_DUPES", 3)
 
 
@@ -21,32 +25,30 @@ class EpisodeBot:
         sql_session: Session,
         http_session: ClientSession,
         main_soup: MainSoup,
-        episode_db_type: type[SQLModel] = None,
+        # episode_type: type[SQLModel] = None,
     ):
-        global EpisodeType
-        if episode_db_type is None:
-            from .episode_db_model import Episode
-
-            EpisodeType = Episode
         self.session = sql_session
         self.http_session = http_session
         self.main_soup = main_soup
+        # if episode_type is None:
+        #     from .episode_model import Episode
+        #
+        #     episode_type = Episode
+        # Episode = episode_type
 
     @classmethod
-    async def from_config(
-        cls, sql_session: Session, aio_session: ClientSession, episode_db_type: SQLModel = None
-    ) -> "EpisodeBot":
+    async def from_config(cls, sql_session: Session, aio_session: ClientSession) -> "EpisodeBot":
         url = os.environ.get("MAIN_URL")
         main_soup = await MainSoup.from_url(url, aio_session)
-        return cls(sql_session, aio_session, main_soup, episode_db_type)
+        return cls(sql_session, aio_session, main_soup)
 
     @classmethod
     async def from_url(
-        cls, url, sql_session: Session, http_session: ClientSession = None, episode_db_type: type[SQLModel] = None
+        cls, url, sql_session: Session, http_session: ClientSession = None, episode_type: type[SQLModel] = None
     ) -> "EpisodeBot":
         http_session = http_session or ClientSession()
         main_soup = await MainSoup.from_url(url, http_session)
-        return cls(sql_session, http_session, main_soup, episode_db_type)
+        return cls(sql_session, http_session, main_soup)
 
     async def run(self, sleep_interval: int = SLEEP) -> None:
         """Schedule scraper and writer tasks."""
@@ -62,11 +64,11 @@ class EpisodeBot:
             logger.debug(f"Sleeping for {sleep_interval} seconds")
             await asyncio.sleep(sleep_interval)
 
-    async def _add(self, eps: AsyncGenerator[EpisodeType, None]) -> AsyncGenerator[EpisodeType, None]:
+    async def _add(self, eps: AsyncGenerator[Episode, None]) -> AsyncGenerator[Episode, None]:
         """Add episode to session and assign gurus."""
         async for ep in eps:
             try:
-                val = EpisodeType.model_validate(ep)
+                val = Episode.model_validate(ep)
                 self.session.add(val)
                 self.session.commit()
                 logger.info(f"New Episode: {val.title} @ {ep.url}")
@@ -75,9 +77,7 @@ class EpisodeBot:
                 logger.error(f"Error adding {ep.title} to session: {e}")
                 # self.session.rollback() #??
 
-    async def _filter_existing_eps(
-        self, episodes: AsyncGenerator[EpisodeType, None]
-    ) -> AsyncGenerator[EpisodeType, None]:
+    async def _filter_existing_eps(self, episodes: AsyncGenerator[Episode, None]) -> AsyncGenerator[Episode, None]:
         """Yields episodes that do not exist in db."""
         dupes = 0
         async for episode in episodes:
@@ -88,10 +88,10 @@ class EpisodeBot:
                 continue
             yield episode
 
-    def _episode_exists(self, episode: EpisodeType) -> bool:
+    def _episode_exists(self, episode: Episode) -> bool:
         """Check if episode matches title and url of existing episode in db."""
         existing_episode = self.session.exec(
-            select(EpisodeType).where((EpisodeType.url == episode.url) & (EpisodeType.title == episode.title))
+            select(Episode).where((Episode.url == episode.url) & (Episode.title == episode.title))
         ).first()
 
         return existing_episode is not None

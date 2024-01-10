@@ -2,8 +2,8 @@ import pytest
 import pytest_asyncio
 from sqlmodel import SQLModel, Session, create_engine, select
 
-from episode_scraper import Episode
 from episode_scraper.episode_bot import EpisodeBot
+from episode_scraper.episode_db_model import Episode
 
 
 @pytest.fixture(scope="session")
@@ -17,13 +17,6 @@ def session():
 MAIN_URL = "https://decoding-the-gurus.captivate.fm"
 
 
-# @pytest.fixture
-# async def http_session():
-#     async with ClientSession() as session:
-#         yield session
-#
-
-
 @pytest_asyncio.fixture
 async def episode_bot(session):
     return await EpisodeBot.from_url(MAIN_URL, session)
@@ -35,7 +28,7 @@ async def test_episode_bot_initialization(episode_bot):
 
 
 @pytest.mark.asyncio
-async def test_gets_episodes(episode_bot, session):
+async def test_gets_episodes_and_skip_existing(episode_bot, session):
     e1 = await anext(episode_bot.run())
     eps = session.exec(select(Episode)).all()
     assert e1 in eps
