@@ -50,7 +50,7 @@ class EpisodeBase(SQLModel):
 
     @property
     def slug(self):
-        return f"/eps/{self.id}"
+        raise NotImplementedError("Implement in subclass")
 
     @classmethod
     def log_episodes(cls, eps: Sequence["EpisodeBase"], calling_func=None, msg: str = ""):

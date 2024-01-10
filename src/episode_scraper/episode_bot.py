@@ -1,4 +1,4 @@
-# from __future__ import annotations
+from __future__ import annotations
 
 import asyncio
 import os
@@ -10,9 +10,21 @@ from loguru import logger
 
 from .soups import MainSoup
 
+# global to allow extending episodebase in client app, else fallback to Episode in this package for standalone
+# must be a better way but many import errors were had and this seems to work
+EpisodeType: type[SQLModel]
+
 SLEEP = os.environ.get("SCRAPER_SLEEP", 60 * 10)
-EpisodeType: type[SQLModel] = None
 MAX_DUPES = os.environ.get("MAX_DUPES", 3)
+
+
+def set_episode_type(episode_db_type: type[SQLModel] = None):
+    global EpisodeType
+    if episode_db_type is None:
+        from .episode_db_model import Episode
+
+        episode_db_type = Episode
+    EpisodeType = episode_db_type
 
 
 class EpisodeBot:
@@ -23,14 +35,11 @@ class EpisodeBot:
         main_soup: MainSoup,
         episode_db_type: type[SQLModel] = None,
     ):
-        global EpisodeType
-        if episode_db_type is None:
-            from .episode_db_model import Episode
-
-            EpisodeType = Episode
         self.session = sql_session
         self.http_session = http_session
         self.main_soup = main_soup
+
+        set_episode_type(episode_db_type)
 
     @classmethod
     async def from_config(
