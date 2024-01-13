@@ -2,7 +2,7 @@ from typing import Optional
 
 from sqlmodel import Field
 
-from episode_scraper.episode_model import EpisodeBase
+from .episode_model import EpisodeBase
 
 
 class Episode(EpisodeBase, table=True):

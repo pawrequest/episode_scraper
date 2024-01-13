@@ -11,20 +11,20 @@ from loguru import logger
 from .soups import MainSoup
 
 # global to allow extending episodebase in client app, else fallback to Episode in this package for standalone
-# must be a better way but many import errors were had and this seems to work
-EpisodeType: type[SQLModel]
+# must be a better way but many import errors and table collisions were had and this seems to work
+EPISODE_TYPE: type[SQLModel]
 
 SLEEP = os.environ.get("SCRAPER_SLEEP", 60 * 10)
 MAX_DUPES = os.environ.get("MAX_DUPES", 3)
 
 
 def set_episode_type(episode_db_type: type[SQLModel] = None):
-    global EpisodeType
+    global EPISODE_TYPE
     if episode_db_type is None:
         from .episode_db_model import Episode
 
         episode_db_type = Episode
-    EpisodeType = episode_db_type
+    EPISODE_TYPE = episode_db_type
 
 
 class EpisodeBot:
@@ -71,11 +71,11 @@ class EpisodeBot:
             logger.debug(f"Sleeping for {sleep_interval} seconds")
             await asyncio.sleep(sleep_interval)
 
-    async def _add(self, eps: AsyncGenerator[EpisodeType, None]) -> AsyncGenerator[EpisodeType, None]:
+    async def _add(self, eps: AsyncGenerator[EPISODE_TYPE, None]) -> AsyncGenerator[EPISODE_TYPE, None]:
         """Add episode to session and assign gurus."""
         async for ep in eps:
             try:
-                val = EpisodeType.model_validate(ep)
+                val = EPISODE_TYPE.model_validate(ep)
                 self.session.add(val)
                 self.session.commit()
                 logger.info(f"New Episode: {val.title} @ {ep.url}")
@@ -85,8 +85,8 @@ class EpisodeBot:
                 # self.session.rollback() #??
 
     async def _filter_existing_eps(
-        self, episodes: AsyncGenerator[EpisodeType, None]
-    ) -> AsyncGenerator[EpisodeType, None]:
+        self, episodes: AsyncGenerator[EPISODE_TYPE, None]
+    ) -> AsyncGenerator[EPISODE_TYPE, None]:
         """Yields episodes that do not exist in db."""
         dupes = 0
         async for episode in episodes:
@@ -97,10 +97,10 @@ class EpisodeBot:
                 continue
             yield episode
 
-    def _episode_exists(self, episode: EpisodeType) -> bool:
+    def _episode_exists(self, episode: EPISODE_TYPE) -> bool:
         """Check if episode matches title and url of existing episode in db."""
         existing_episode = self.session.exec(
-            select(EpisodeType).where((EpisodeType.url == episode.url) & (EpisodeType.title == episode.title))
+            select(EPISODE_TYPE).where((EPISODE_TYPE.url == episode.url) & (EPISODE_TYPE.title == episode.title))
         ).first()
 
         return existing_episode is not None

@@ -5,8 +5,8 @@ from typing import Sequence
 
 from loguru import logger
 
-from episode_scraper import EpisodeBase
-from episode_scraper.config import HTML_TITLE
+from .episode_model import EpisodeBase
+from .config import HTML_TITLE
 
 
 class EpisodeWriter(ABC):

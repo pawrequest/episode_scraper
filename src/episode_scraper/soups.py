@@ -10,7 +10,7 @@ from aiohttp import ClientError, ClientSession as ClientSession
 from bs4 import BeautifulSoup, Tag
 from loguru import logger
 
-from episode_scraper.episode_model import EpisodeBase
+from .episode_model import EpisodeBase
 
 
 class MainSoup(BeautifulSoup):
