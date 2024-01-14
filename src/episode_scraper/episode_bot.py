@@ -19,11 +19,12 @@ MAX_DUPES = os.environ.get("MAX_DUPES", 3)
 
 
 def set_episode_type(episode_db_type: type[SQLModel] = None):
-    global EPISODE_TYPE
     if episode_db_type is None:
+        logger.info("Using default Episode model")
         from .episode_db_model import Episode
 
         episode_db_type = Episode
+    global EPISODE_TYPE
     EPISODE_TYPE = episode_db_type
 
 
@@ -57,7 +58,7 @@ class EpisodeBot:
         main_soup = await MainSoup.from_url(url, http_session)
         return cls(sql_session, http_session, main_soup, episode_db_type)
 
-    async def run(self, sleep_interval: int = SLEEP) -> None:
+    async def run_q(self, queue: asyncio.Queue, sleep_interval: int = SLEEP) -> None:
         """Schedule scraper and writer tasks."""
         logger.info(
             f"Initialised : {self.main_soup.main_url}",
@@ -67,7 +68,7 @@ class EpisodeBot:
             episode_stream = self.main_soup.episode_stream(http_session=self.http_session)
             new_stream = self._filter_existing_eps(episode_stream)
             async for added in self._add(new_stream):
-                yield added
+                await queue.put(added)
             logger.debug(f"Sleeping for {sleep_interval} seconds")
             await asyncio.sleep(sleep_interval)
 

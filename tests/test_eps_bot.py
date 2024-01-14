@@ -1,5 +1,9 @@
+import asyncio
+import os
+
 import pytest
 import pytest_asyncio
+from aiohttp import ClientSession
 from sqlmodel import SQLModel, Session, create_engine, select
 
 from episode_scraper.episode_bot import EpisodeBot
@@ -34,3 +38,25 @@ async def test_gets_episodes_and_skip_existing(episode_bot, session):
     assert e1 in eps
     e2 = await anext(episode_bot.run())
     assert e2 != e1
+
+
+@pytest.mark.asyncio
+async def test_uses_queue(episode_bot: EpisodeBot):
+    tasks = []
+    episode_q = asyncio.Queue()
+    tasks.append(asyncio.create_task(episode_bot.run_q(episode_q)))
+    tasks.append(asyncio.create_task(process_episodes(episode_q)))
+    for _ in range(2):
+        ep = await episode_q.get()
+        assert ep.title
+
+    for task in tasks:
+        task.cancel()
+    await asyncio.gather(*tasks, return_exceptions=True)
+
+
+async def process_episodes(queue: asyncio.Queue):
+    while True:
+        result = await queue.get()
+        print(result.title)
+        queue.task_done()
