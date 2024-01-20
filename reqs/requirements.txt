@@ -1,0 +1,7 @@
+-r ./reqs_local.txt
+-r ./reqs_dev.txt
+aiohttp
+sqlmodel
+loguru
+beautifulsoup4
+python-dateutil
