@@ -17,9 +17,7 @@ class EpisodeBase(SQLModel):
     url: str = Field(index=True)
     title: str = Field(index=True)
     notes: List[str] = Field(default=None, sa_column=Column(JSON))
-    # notes: Optional[List[str]] = Field(default=None, sa_column=Column(JSON))
     links: Dict[str, str] = Field(default=None, sa_column=Column(JSON))
-    # links: Optional[Dict[str, str]] = Field(default=None, sa_column=Column(JSON))
     date: Optional[datetime] = Field(default=None)
     episode_number: Optional[str] = Field(default=None)
 
@@ -105,3 +103,9 @@ def episodes_log_msg(eps: Sequence[EpisodeBase]) -> str:
 #
 #     def __str__(self):
 #         return f"{self.__class__.__name__}: {self.meta.length} {self.episodes[0].__class__.__name__}s"
+class Episode(EpisodeBase, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+
+    @property
+    def slug(self):
+        return f"/eps/{self.id}"

@@ -7,7 +7,7 @@ from aiohttp import ClientSession
 from sqlmodel import SQLModel, Session, create_engine, select
 
 from episode_scraper.episode_bot import EpisodeBot
-from episode_scraper.episode_db_model import Episode
+from episode_scraper.episode_model import Episode
 
 
 @pytest.fixture(scope="session")
@@ -48,7 +48,7 @@ async def test_uses_queue(episode_bot: EpisodeBot):
     tasks.append(asyncio.create_task(process_episodes(episode_q)))
     for _ in range(2):
         ep = await episode_q.get()
-        assert ep.title
+        assert ep.ep_title
 
     for task in tasks:
         task.cancel()
@@ -58,5 +58,5 @@ async def test_uses_queue(episode_bot: EpisodeBot):
 async def process_episodes(queue: asyncio.Queue):
     while True:
         result = await queue.get()
-        print(result.title)
+        print(result.ep_title)
         queue.task_done()
