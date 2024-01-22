@@ -1,16 +1,25 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Sequence
+from datetime import datetime
+from typing import Protocol, Sequence
 
 from loguru import logger
 
-from .episode_model import EpisodeBase
-from .config import HTML_TITLE
+from .consts import HTML_TITLE
+
+
+class EP_PROT(Protocol):
+    title: str
+    date: datetime
+    notes: list
+    links: dict
+    url: str
 
 
 class EpisodeWriter(ABC):
-    def __init__(self, episodes: EpisodeBase | Sequence[EpisodeBase]):
+    # def __init__(self, episodes: EP_PROT | Sequence[EP_PROT]):
+    def __init__(self, episodes: EP_PROT | Sequence[EP_PROT]):
         if not isinstance(episodes, Sequence):
             episodes = (episodes,)
         self.episodes = episodes
@@ -22,7 +31,7 @@ class EpisodeWriter(ABC):
         text += self._post_tail_text()
         return text
 
-    def write_one(self, episode: EpisodeBase = None) -> str:
+    def write_one(self, episode: EP_PROT = None) -> str:
         if len(self.episodes) != 1:
             raise ValueError(f"No episode provided and {len(self.episodes)} episodes in writer.")
         episode = episode or self.episodes[0]
@@ -63,14 +72,14 @@ class EpisodeWriter(ABC):
 
 
 class HtmlWriter(EpisodeWriter):
-    def _contents(self, eps: Sequence[EpisodeBase] = None) -> str:
+    def _contents(self, eps: Sequence[EP_PROT] = None) -> str:
         eps = eps or self.episodes
         toc = "<h2>Table of Contents</h2>\n"
         for i, ep in enumerate(eps):
             toc += f"<a href='#ep-{i}'>{ep.title}</a><br>\n"
         return toc
 
-    def _post_head_text(self, episode: EpisodeBase) -> str:
+    def _post_head_text(self, episode: EP_PROT) -> str:
         text = f"""
             <!DOCTYPE html>
             <html lang="en">
@@ -84,7 +93,7 @@ class HtmlWriter(EpisodeWriter):
         text += self._contents(self.episodes)
         return text
 
-    def _title_text(self, episode: EpisodeBase, ep_id="") -> str:
+    def _title_text(self, episode: EP_PROT, ep_id="") -> str:
         return f"<h1 id='ep-{str(ep_id)}'>{episode.title}</h1>\n<a href='{episode.url}'>Play on Captivate.fm</a>\n"
 
     def _date_text(self, date_pub) -> str:
@@ -108,10 +117,10 @@ class HtmlWriter(EpisodeWriter):
 
 
 class RPostWriter(EpisodeWriter):
-    def _post_head_text(self, episode: EpisodeBase) -> str:
+    def _post_head_text(self, episode: EP_PROT) -> str:
         return ""
 
-    def _title_text(self, episode: EpisodeBase) -> str:
+    def _title_text(self, episode: EP_PROT) -> str:
         return f"## [{episode.title}]({episode.url})\n \n"
 
     def _date_text(self, date_pub) -> str:
@@ -135,10 +144,10 @@ class RPostWriter(EpisodeWriter):
 
 
 class RWikiWriter(EpisodeWriter):
-    def _post_head_text(self, episode: EpisodeBase) -> str:
+    def _post_head_text(self, episode: EP_PROT) -> str:
         return ""
 
-    def _title_text(self, episode: EpisodeBase) -> str:
+    def _title_text(self, episode: EP_PROT) -> str:
         return f"### [{episode.title}]({episode.url})\n \n"
 
     def _date_text(self, date_pub) -> str:
@@ -161,7 +170,7 @@ class RWikiWriter(EpisodeWriter):
         return "\n \n --- \n \n"
 
 
-async def episode_subreddit_post_text(episode: EpisodeBase) -> tuple[str, str]:
+async def episode_subreddit_post_text(episode: EP_PROT) -> tuple[str, str]:
     try:
         title = f"NEW EPISODE: {episode.title}"
         writer = RPostWriter(episode)

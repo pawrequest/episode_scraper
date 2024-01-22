@@ -5,10 +5,15 @@ from datetime import datetime
 from typing import Dict, List, Optional, Sequence
 
 from dateutil import parser
-from pydantic import BaseModel, field_validator
-from sqlalchemy import Column
-from sqlmodel import Field, JSON, SQLModel
 from loguru import logger
+
+try:
+    from pydantic import BaseModel, field_validator
+    from sqlalchemy import Column
+    from sqlmodel import Field, JSON, SQLModel
+except ImportError:
+    logger.error("sqlmodel not installed")
+    raise ImportError
 
 MAYBE_ATTRS = ["title", "notes", "links", "date"]
 
@@ -50,19 +55,19 @@ class EpisodeBase(SQLModel):
     def slug(self):
         raise NotImplementedError("Implement in subclass")
 
-    @classmethod
-    def log_episodes(cls, eps: Sequence["EpisodeBase"], calling_func=None, msg: str = ""):
-        """Logs the first 3 episodes and the last 2 episodes of a sequence episodes"""
-        if not eps:
-            return
-        if calling_func:
-            calling_f = calling_func.__name__
-        else:
-            calling_f = f"{inspect.stack()[1].function} INSPECTED, YOU SHOULD PROVIDE THE FUNC"
-
-        new_msg = f"{msg} {len(eps)} Episodes in {calling_f}():\n"
-        new_msg += episodes_log_msg(eps)
-        logger.info(new_msg)
+    # @classmethod
+    # def log_episodes(cls, eps: Sequence["EpisodeBase"], calling_func=None, msg: str = ""):
+    #     """Logs the first 3 episodes and the last 2 episodes of a sequence episodes"""
+    #     if not eps:
+    #         return
+    #     if calling_func:
+    #         calling_f = calling_func.__name__
+    #     else:
+    #         calling_f = f"{inspect.stack()[1].function} INSPECTED, YOU SHOULD PROVIDE THE FUNC"
+    #
+    #     new_msg = f"{msg} {len(eps)} Episodes in {calling_f}():\n"
+    #     new_msg += episodes_log_msg(eps)
+    #     logger.info(new_msg)
 
 
 class EpisodeMeta(BaseModel):
@@ -70,18 +75,18 @@ class EpisodeMeta(BaseModel):
     msg: str = ""
 
 
-def episodes_log_msg(eps: Sequence[EpisodeBase]) -> str:
-    msg = ""  # in case no eps
-    msg += "\n".join([_.log_str() for _ in eps[:3]])
-
-    if len(eps) == 4:
-        fth = eps[3]
-        msg += f"\n{fth.log_str()}"
-    elif len(eps) > 4:
-        to_log = min([2, abs(len(eps) - 4)])
-        msg += " \n\t... more ...\n"
-        msg += "\n".join([_.log_str() for _ in eps[-to_log:]])
-    return msg
+# def episodes_log_msg(eps: Sequence[EpisodeBase]) -> str:
+#     msg = ""  # in case no eps
+#     msg += "\n".join([_.log_str() for _ in eps[:3]])
+#
+#     if len(eps) == 4:
+#         fth = eps[3]
+#         msg += f"\n{fth.log_str()}"
+#     elif len(eps) > 4:
+#         to_log = min([2, abs(len(eps) - 4)])
+#         msg += " \n\t... more ...\n"
+#         msg += "\n".join([_.log_str() for _ in eps[-to_log:]])
+#     return msg
 
 
 # class EpisodeResponse(BaseModel):
