@@ -1,5 +1,5 @@
 [project]
-name = "episode-scraper"
+name = "scraper"
 version = "0.1.0"
 description = "Scrape Episodes"
 authors = [
@@ -11,9 +11,19 @@ dependencies = [
     "loguru",
     "beautifulsoup4",
     "python-dateutil",
+    "pawsupport @ git+https://github.com/pawrequest/pawsupport",
 ]
-readme = "README.md"
+readme = "index.rst"
 requires-python = ">= 3.12"
+
+[project.optional-dependencies]
+docs = [
+    "sphinx",
+    "sphinx-autodoc-typehints",
+    "sphinx-rtd-theme",
+    "sphinx-readme",
+]
+
 
 [build-system]
 requires = ["hatchling"]

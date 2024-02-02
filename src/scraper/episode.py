@@ -1,20 +1,11 @@
-# from __future__ import annotations
 from __future__ import annotations
 
 import inspect
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Dict, List, Optional, Sequence, TYPE_CHECKING
+from typing import Dict, List, Optional, Sequence
 
-from dateutil.parser import parse
 from loguru import logger
-
-
-if TYPE_CHECKING:
-    from episode_scraper.selectors.captivate import CaptivateDetailPageSelector, CaptivateListingSelectorABC
-    from episode_scraper.types import DetailProtocol, ListingProtocol
-
-MAYBE_ATTRS = ["title", "notes", "links", "date"]
 
 
 @dataclass
@@ -51,30 +42,6 @@ class EpisodeDC:
         new_msg = f"{msg} {len(eps)} Episodes in {calling_f}():\n"
         new_msg += episodes_log_msg(eps)
         logger.info(new_msg)
-
-    @classmethod
-    def from_proto(cls, listing: ListingProtocol, detail: DetailProtocol) -> EpisodeDC:
-        date = parse(listing.ep_date)
-        return cls(
-            title=listing.ep_title,
-            url=listing.ep_url,
-            episode_number=listing.ep_number,
-            date=date,
-            notes=detail.ep_notes,
-            links=detail.ep_links,
-        )
-
-    @classmethod
-    def from_selectors(cls, listing: CaptivateListingSelectorABC, detail: CaptivateDetailPageSelector) -> EpisodeDC:
-        date = parse(listing.date)
-        return cls(
-            title=listing.title,
-            url=listing.url,
-            episode_number=listing.number,
-            date=date,
-            notes=detail.notes,
-            links=detail.links,
-        )
 
 
 def episodes_log_msg(eps: Sequence[EpisodeDC]) -> str:

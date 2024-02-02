@@ -11,3 +11,36 @@ python + fastapi + beautiful soup + prawl
 * add flair to posts with given tags in title
 
 
+.. automodule:: scraper.implementations.dtg_scraper
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+.. automodule:: scraper.implementations.dtg_selectors
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+.. automodule:: scraper.implementations.captivate_selectors
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+
+
+
+.. automodule:: scraper.selectors.captivate
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+.. automodule:: scraper.selectors.dtg_selectors
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+
+.. automodule:: scraper.episode
+    :members:
+    :private-members:
+    :member-order: groupwise
