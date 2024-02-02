@@ -1,0 +1,21 @@
+scraper.sql package
+===================
+
+Submodules
+----------
+
+scraper.sql.episode\_sql module
+-------------------------------
+
+.. automodule:: scraper.sql.episode_sql
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: scraper.sql
+   :members:
+   :undoc-members:
+   :show-inheritance:

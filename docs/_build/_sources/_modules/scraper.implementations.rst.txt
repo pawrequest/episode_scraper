@@ -1,0 +1,37 @@
+scraper.implementations package
+===============================
+
+Submodules
+----------
+
+scraper.implementations.captivate\_selectors module
+---------------------------------------------------
+
+.. automodule:: scraper.implementations.captivate_selectors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.implementations.dtg\_scraper module
+-------------------------------------------
+
+.. automodule:: scraper.implementations.dtg_scraper
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.implementations.dtg\_selectors module
+---------------------------------------------
+
+.. automodule:: scraper.implementations.dtg_selectors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: scraper.implementations
+   :members:
+   :undoc-members:
+   :show-inheritance:

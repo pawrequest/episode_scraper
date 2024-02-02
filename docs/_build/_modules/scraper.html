@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>scraper package &#8212; Episode Scraper  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="canonical" href="https://pawsupport.readthedocs.io/en/latest/_modules/scraper.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="scraper-package">
+<h1>scraper package<a class="headerlink" href="#scraper-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scraper.implementations.html">scraper.implementations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scraper.implementations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scraper.implementations.html#module-scraper.implementations.captivate_selectors">scraper.implementations.captivate_selectors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateDetailPage"><code class="docutils literal notranslate"><span class="pre">CaptivateDetailPage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListPage"><code class="docutils literal notranslate"><span class="pre">CaptivateListPage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListPage.get_all_urls"><code class="docutils literal notranslate"><span class="pre">CaptivateListPage.get_all_urls</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListPage.get_subpage_tags"><code class="docutils literal notranslate"><span class="pre">CaptivateListPage.get_subpage_tags</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListPage.num_pages"><code class="docutils literal notranslate"><span class="pre">CaptivateListPage.num_pages</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListPage.page_nav_links"><code class="docutils literal notranslate"><span class="pre">CaptivateListPage.page_nav_links</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListPage.subpage_selectors"><code class="docutils literal notranslate"><span class="pre">CaptivateListPage.subpage_selectors</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.captivate_selectors.CaptivateListSubpage"><code class="docutils literal notranslate"><span class="pre">CaptivateListSubpage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scraper.implementations.html#scraper-implementations-dtg-scraper-module">scraper.implementations.dtg_scraper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scraper.implementations.html#module-scraper.implementations.dtg_selectors">scraper.implementations.dtg_selectors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGDetailPage"><code class="docutils literal notranslate"><span class="pre">DTGDetailPage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGDetailPage.links"><code class="docutils literal notranslate"><span class="pre">DTGDetailPage.links</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGDetailPage.notes"><code class="docutils literal notranslate"><span class="pre">DTGDetailPage.notes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListPage"><code class="docutils literal notranslate"><span class="pre">DTGListPage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListPage.subpage_selectors"><code class="docutils literal notranslate"><span class="pre">DTGListPage.subpage_selectors</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListSubpage"><code class="docutils literal notranslate"><span class="pre">DTGListSubpage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListSubpage.date"><code class="docutils literal notranslate"><span class="pre">DTGListSubpage.date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListSubpage.number"><code class="docutils literal notranslate"><span class="pre">DTGListSubpage.number</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListSubpage.title"><code class="docutils literal notranslate"><span class="pre">DTGListSubpage.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="scraper.implementations.html#scraper.implementations.dtg_selectors.DTGListSubpage.url"><code class="docutils literal notranslate"><span class="pre">DTGListSubpage.url</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scraper.implementations.html#module-scraper.implementations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scraper.sql.html">scraper.sql package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scraper.sql.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scraper.sql.html#scraper-sql-episode-sql-module">scraper.sql.episode_sql module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scraper.sql.html#module-scraper.sql">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-scraper.consts">
+<span id="scraper-consts-module"></span><h2>scraper.consts module<a class="headerlink" href="#module-scraper.consts" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-scraper.episode">
+<span id="scraper-episode-module"></span><h2>scraper.episode module<a class="headerlink" href="#module-scraper.episode" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EpisodeDC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notes=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">episode_number=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.episode.EpisodeDC" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.date">
+<span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#scraper.episode.EpisodeDC.date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.episode_number">
+<span class="sig-name descname"><span class="pre">episode_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#scraper.episode.EpisodeDC.episode_number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.links">
+<span class="sig-name descname"><span class="pre">links</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#scraper.episode.EpisodeDC.links" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.log_episodes">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log_episodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calling_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.episode.EpisodeDC.log_episodes" title="Link to this definition">¶</a></dt>
+<dd><p>Logs the first 3 episodes and the last 2 episodes of a sequence episodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.log_str">
+<span class="sig-name descname"><span class="pre">log_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scraper.episode.EpisodeDC.log_str" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.notes">
+<span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#scraper.episode.EpisodeDC.notes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.episode.EpisodeDC.title" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.episode.EpisodeDC.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.episode.EpisodeDC.url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scraper.episode.episodes_log_msg">
+<span class="sig-name descname"><span class="pre">episodes_log_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.episode.episodes_log_msg" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-scraper.scrape">
+<span id="scraper-scrape-module"></span><h2>scraper.scrape module<a class="headerlink" href="#module-scraper.scrape" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ScraperABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">http_session</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selector_types</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.episode_from_selectors">
+<span class="sig-name descname"><span class="pre">episode_from_selectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selectors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.episode_from_selectors" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#scraper.episode.EpisodeDC" title="scraper.episode.EpisodeDC"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpisodeDC</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.episode_selectors">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">episode_selectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listpage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.episode_selectors" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TagSelectorABC</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.get_all_urls">
+<span class="sig-name descname"><span class="pre">get_all_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_selector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.get_all_urls" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.get_detail_page_selector">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detail_page_selector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.get_detail_page_selector" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#scraper.selectors.DetailPageSelector" title="scraper.selectors.DetailPageSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailPageSelector</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.get_list_page_selector">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_list_page_selector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.get_list_page_selector" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#scraper.selectors.ListPageSelector" title="scraper.selectors.ListPageSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListPageSelector</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.get_some_eps">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_some_eps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.get_some_eps" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.get_subpage_selectors">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_subpage_selectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listpage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.get_subpage_selectors" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#scraper.selectors.ListingSubpageSelector" title="scraper.selectors.ListingSubpageSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListingSubpageSelector</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.go">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">go</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.go" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.scrape.ScraperABC.main_selector_">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">main_selector_</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scraper.scrape.ScraperABC.main_selector_" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#scraper.selectors.ListPageSelector" title="scraper.selectors.ListPageSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListPageSelector</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scraper.selectors">
+<span id="scraper-selectors-module"></span><h2>scraper.selectors module<a class="headerlink" href="#module-scraper.selectors" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.selectors.DetailPageSelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DetailPageSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.selectors.DetailPageSelector" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PageSelectorABC</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="scraper.selectors.DetailPageSelector.links">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">links</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scraper.selectors.DetailPageSelector.links" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scraper.selectors.DetailPageSelector.notes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scraper.selectors.DetailPageSelector.notes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.selectors.ListPageSelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListPageSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.selectors.ListPageSelector" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PageSelectorABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.selectors.ListPageSelector.get_all_urls">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_all_urls</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scraper.selectors.ListPageSelector.get_all_urls" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.selectors.ListPageSelector.get_subpage_tags">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_subpage_tags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scraper.selectors.ListPageSelector.get_subpage_tags" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultSet</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Tag</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.selectors.ListingSubpageSelector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListingSubpageSelector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.selectors.ListingSubpageSelector" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TagSelectorABC</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="scraper.selectors.ListingSubpageSelector.date">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#scraper.selectors.ListingSubpageSelector.date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scraper.selectors.ListingSubpageSelector.number">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#scraper.selectors.ListingSubpageSelector.number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scraper.selectors.ListingSubpageSelector.title">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#scraper.selectors.ListingSubpageSelector.title" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scraper.selectors.ListingSubpageSelector.url">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#scraper.selectors.ListingSubpageSelector.url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.selectors.PodSelectorsABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PodSelectorsABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_page_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail_page</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_subpage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.selectors.PodSelectorsABC" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-scraper.types">
+<span id="scraper-types-module"></span><h2>scraper.types module<a class="headerlink" href="#module-scraper.types" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.types.DetailProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DetailProtocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.types.DetailProtocol" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.types.DetailProtocol.ep_links">
+<span class="sig-name descname"><span class="pre">ep_links</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">,</span> <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#scraper.types.DetailProtocol.ep_links" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.types.DetailProtocol.ep_notes">
+<span class="sig-name descname"><span class="pre">ep_notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#scraper.types.DetailProtocol.ep_notes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.types.ListingProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListingProtocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.types.ListingProtocol" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.types.ListingProtocol.ep_date">
+<span class="sig-name descname"><span class="pre">ep_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.types.ListingProtocol.ep_date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.types.ListingProtocol.ep_number">
+<span class="sig-name descname"><span class="pre">ep_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.types.ListingProtocol.ep_number" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.types.ListingProtocol.ep_title">
+<span class="sig-name descname"><span class="pre">ep_title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.types.ListingProtocol.ep_title" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.types.ListingProtocol.ep_url">
+<span class="sig-name descname"><span class="pre">ep_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.types.ListingProtocol.ep_url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-scraper.writer">
+<span id="scraper-writer-module"></span><h2>scraper.writer module<a class="headerlink" href="#module-scraper.writer" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.writer.EP_PROT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EP_PROT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.EP_PROT" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.writer.EP_PROT.date">
+<span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime</span></code></em><a class="headerlink" href="#scraper.writer.EP_PROT.date" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.writer.EP_PROT.links">
+<span class="sig-name descname"><span class="pre">links</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></em><a class="headerlink" href="#scraper.writer.EP_PROT.links" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.writer.EP_PROT.notes">
+<span class="sig-name descname"><span class="pre">notes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></em><a class="headerlink" href="#scraper.writer.EP_PROT.notes" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.writer.EP_PROT.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.writer.EP_PROT.title" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scraper.writer.EP_PROT.url">
+<span class="sig-name descname"><span class="pre">url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#scraper.writer.EP_PROT.url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.writer.EpisodeWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EpisodeWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">episodes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.EpisodeWriter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.writer.EpisodeWriter.write_many">
+<span class="sig-name descname"><span class="pre">write_many</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.EpisodeWriter.write_many" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scraper.writer.EpisodeWriter.write_one">
+<span class="sig-name descname"><span class="pre">write_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">episode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.EpisodeWriter.write_one" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.writer.HtmlWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HtmlWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">episodes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.HtmlWriter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#scraper.writer.EpisodeWriter" title="scraper.writer.EpisodeWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpisodeWriter</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.writer.RPostWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RPostWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">episodes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.RPostWriter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#scraper.writer.EpisodeWriter" title="scraper.writer.EpisodeWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpisodeWriter</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scraper.writer.RWikiWriter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RWikiWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">episodes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.RWikiWriter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#scraper.writer.EpisodeWriter" title="scraper.writer.EpisodeWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpisodeWriter</span></code></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scraper.writer.episode_subreddit_post_text">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">episode_subreddit_post_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">episode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scraper.writer.episode_subreddit_post_text" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-scraper">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-scraper" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Episode Scraper</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, paw.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/_modules/scraper.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

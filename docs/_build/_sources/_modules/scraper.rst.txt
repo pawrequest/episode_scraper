@@ -1,0 +1,70 @@
+scraper package
+===============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   scraper.implementations
+   scraper.sql
+
+Submodules
+----------
+
+scraper.consts module
+---------------------
+
+.. automodule:: scraper.consts
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.episode module
+----------------------
+
+.. automodule:: scraper.episode
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.scrape module
+---------------------
+
+.. automodule:: scraper.scrape
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.selectors module
+------------------------
+
+.. automodule:: scraper.selectors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.types module
+--------------------
+
+.. automodule:: scraper.types
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+scraper.writer module
+---------------------
+
+.. automodule:: scraper.writer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: scraper
+   :members:
+   :undoc-members:
+   :show-inheritance:

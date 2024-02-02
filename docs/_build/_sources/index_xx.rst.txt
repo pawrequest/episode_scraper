@@ -1,0 +1,51 @@
+Welcome to Episode Scraper's documentation!
+===========================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+How to Build a Scraper:
+=======================
+.. automodule:: scraper.implementations.dtg_scraper
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+.. automodule:: scraper.implementations.dtg_selectors
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+.. automodule:: scraper.implementations.captivate_selectors
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+
+
+
+.. automodule:: scraper.selectors.captivate
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+.. automodule:: scraper.selectors.dtg_selectors
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+
+.. automodule:: scraper.episode
+    :members:
+    :private-members:
+    :member-order: groupwise
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
