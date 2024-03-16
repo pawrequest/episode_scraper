@@ -99,17 +99,22 @@ class DTGPodcast(Podcast):
             self,
             limit: int | None = None,
             session: aiohttp.ClientSession | None = None,
-            max_dupes: int = 3
-    ):
+            max_dupes: int = None
+    ) -> _t.AsyncGenerator[DTGEpisode, None]:
         session = session or aiohttp.ClientSession()
         dupes = 0
+        ep_count = 0
         async for episode_url in fnc.episode_urls_from_url(self.base_url, session=session):
-            if limit and len(self.episodes) >= limit:
+            if limit and ep_count >= limit:
                 break
             if episode_url in [ep.url for ep in self.episodes]:
+                print(f'Duplicate episode found: {episode_url}')
                 dupes += 1
-                if dupes >= max_dupes:
+                if max_dupes and dupes >= max_dupes:
+                    print(f'Exiting due to {max_dupes} duplicates')
                     break
                 continue
-            self.episodes.append(await DTGEpisode.from_url(episode_url))
-        ...
+            ep = await DTGEpisode.from_url(episode_url)
+            self.episodes.append(ep)
+            ep_count += 1
+            yield ep
