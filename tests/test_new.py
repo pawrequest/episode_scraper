@@ -1,12 +1,11 @@
 import asyncio
-from asyncio import Queue
 
 import aiohttp
 import pytest
 import pytest_asyncio
 
-from scraper.episode import EpisodeDC
-from scraper.implementations.dtg_scraper import DTGScraper
+from scrapaw import EpisodeDC
+from scrapaw.concrete import DTGScraper
 
 
 @pytest_asyncio.fixture
@@ -31,6 +30,10 @@ async def test_scraper_run(scraper_fxt):
 
 @pytest.mark.asyncio
 async def test_scraper_go_gen(scraper_fxt):
-    async for ep in scraper_fxt.go():
+    ...
+
+@pytest.mark.asyncio
+async def test_scraper_gn(scraper_fxt: DTGScraper):
+    async for ep in scraper_fxt.get_some_eps(1):
         assert isinstance(ep, EpisodeDC)
         break

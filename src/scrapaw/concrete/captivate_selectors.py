@@ -2,18 +2,14 @@ from __future__ import annotations
 
 from bs4 import ResultSet, Tag
 
-from ..selectors import DetailSoup, ListSoup, ListTag
+from scrapaw.abs.pod_selectors import DetailSoup, ListSoup, ListTag
 
 
-class CDetailPage(DetailSoup):
+class DetailPage(DetailSoup):
     pass
 
 
-class CListTag(ListTag):
-    pass
-
-
-class CListPage(ListSoup):
+class ListPage(ListSoup):
     """Extract information from list page"""
 
     @property

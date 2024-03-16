@@ -1,15 +1,11 @@
 from __future__ import annotations
 
-"""
-some stiff
-"""
-
 from aiohttp import ClientSession
 from dateutil.parser import parse
 
+from ..abs.pod_selectors import PodSoup
 from ..episode import EpisodeDC
-from ..scrape import ScraperABC
-from ..selectors import PodSoup
+from ..abs.scrape import ScraperABC
 from .dtg_selectors import DTGDetailPage, DTGListPage, DTGListTag
 
 

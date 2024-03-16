@@ -2,13 +2,9 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from aiohttp import ClientSession
-from bs4 import ResultSet, Tag, BeautifulSoup
-from loguru import logger
-from pawsupport.async_ps import response_
+from bs4 import ResultSet, Tag
 
-from pawsupport.html_ps import PageSelectorABC, TagSelectorABC
-from pawsupport.html_ps import PageSoup, TagSoup
+from soupaw import PageSoup, TagSoup
 
 
 class PodSoup(ABC):

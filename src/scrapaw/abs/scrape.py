@@ -1,25 +1,21 @@
 from __future__ import annotations
 
 from abc import ABC
-from typing import Generator, TYPE_CHECKING
+from typing import Generator
 
 from aiohttp import ClientSession
-import pawsupport.async_ps
-from pawsupport.html_ps import TagSelectorABC
 
-from .episode import EpisodeDC
-from .selectors import DetailSoup, ListSoup, ListTag, PodSoup
-
-if TYPE_CHECKING:
-    pass
+from soupaw import TagSelectorABC
+from scrapaw.episode import EpisodeDC
+from .pod_selectors import DetailSoup, ListSoup, ListTag, PodSoup
 
 
 class ScraperABC(ABC):
     def __init__(
-        self,
-        url: str,
-        http_session: ClientSession,
-        selector_types: PodSoup,
+            self,
+            url: str,
+            http_session: ClientSession,
+            selector_types: PodSoup,
     ):
         self.url = url
         self.http_session = http_session
@@ -51,7 +47,6 @@ class ScraperABC(ABC):
     async def get_episode_tags(self, listpage: ListSoup) -> list[tuple[TagSelectorABC, ...]]:
         raise NotImplementedError
 
-    @quiet_cancel_as
     async def get_some_eps(self, limit: int = None) -> Generator[EpisodeDC]:
         ep_i = 0
         async for ep in self.go():

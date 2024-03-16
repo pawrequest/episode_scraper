@@ -1,15 +1,15 @@
 from __future__ import annotations, annotations
 
-from .captivate_selectors import CDetailPage, CListPage, CListTag
+from .captivate_selectors import DetailPage, ListPage, ListTag
 
 
-class DTGListPage(CListPage):
+class DTGListPage(ListPage):
     @property
     def subpage_selectors(self) -> list[DTGListTag]:
         return [DTGListTag.from_bs4(_) for _ in self.tag.select(".episode")]
 
 
-class DTGDetailPage(CDetailPage):
+class DTGDetailPage(DetailPage):
     """Extract information from detail page"""
 
     @property
@@ -23,7 +23,7 @@ class DTGDetailPage(CDetailPage):
         return {_.text: _["href"] for _ in show_links_html}
 
 
-class DTGListTag(CListTag):
+class DTGListTag(ListTag):
     @property
     def ep_number(self) -> str:
         """string because 'bonus' episodes are not numbered"""

@@ -1,5 +1,9 @@
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 DEBUG = os.environ.get("DEBUG", False)
 SLEEP = os.environ.get("SLEEP", 600)
 MAIN_URL = os.environ.get("MAIN_URL", None)
