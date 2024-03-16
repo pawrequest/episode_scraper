@@ -4,7 +4,7 @@ from abc import ABC
 from typing import Generator, TYPE_CHECKING
 
 from aiohttp import ClientSession
-from pawsupport.async_ps import quiet_cancel_as
+import pawsupport.async_ps
 from pawsupport.html_ps import TagSelectorABC
 
 from .episode import EpisodeDC
