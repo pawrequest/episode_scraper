@@ -2,6 +2,8 @@ import pytest
 
 from scrapaw.pyd import dtg_fnc, dtg_pyd
 
+import scrapaw.captivate_fncs
+
 
 @pytest.mark.asyncio
 async def test_24():
@@ -13,7 +15,7 @@ async def test_24():
 
 @pytest.mark.asyncio
 async def test_25():
-    async for res in dtg_fnc.episode_urls_from_url('https://decoding-the-gurus.captivate.fm/'):
+    async for res in scrapaw.captivate_fncs.episode_urls_from_url('https://decoding-the-gurus.captivate.fm/'):
         ...
 
 

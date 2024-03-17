@@ -35,7 +35,7 @@ html_context = {
     "github_user": "PawRequest",
     "github_repo": "episode-scraper",
 }
-html_baseurl = "https://pawsupport.readthedocs.io/en/latest"
+html_baseurl = "https://suppawt.readthedocs.io/en/latest"
 readme_src_files = "index.rst"
 readme_docs_url_type = "html"
 add_module_names = False

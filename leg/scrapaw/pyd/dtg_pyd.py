@@ -10,32 +10,6 @@ from . import dtg_fnc as fnc
 from .. import get_soup
 
 
-# def tag_text(tag: bs4.Tag, *args, **kwargs) -> str:
-#     return tag.select_one(*args, **kwargs).text.strip()
-#
-#
-# def tag_link(tag: bs4.Tag, *args, **kwargs) -> str:
-#     return tag.select_one(*args, **kwargs)["href"]
-
-#
-# class DetailPage(_p.BaseModel):
-#     detail_url: str
-#     episode_notes: list = _p.Field(default_factory=list)
-#     episode_links: dict[str, str] = _p.Field(default_factory=dict)
-#
-#
-# class ListingSubPage(_p.BaseModel):
-#     episode_number: str = ''
-#     episode_date: dt.date
-#     episode_url: str
-#     episode_title: str
-#
-#
-# class ListingPage(_p.BaseModel):
-#     listing_url: str
-#     listing_subpages: list[ListingSubPage] | None = None
-
-
 class Episode(_p.BaseModel):
     title: str
     url: str
@@ -62,13 +36,15 @@ class DTGEpisode(Episode):
     @classmethod
     async def from_url(cls, url, session: aiohttp.ClientSession | None = None) -> _t.Self:
         tag = await get_soup.soup_from_url(url=url, session=session)
-        return cls(
-            url=url,
-            title=fnc.tag_title(tag=tag),
-            date=fnc.tag_ep_date(tag=tag),
-            notes=fnc.tag_notes(tag=tag),
-            links=fnc.tag_links(tag=tag),
-            number=fnc.tag_ep_num(tag=tag),
+        return cls.model_validate(
+            dict(
+                url=url,
+                title=fnc.tag_title(tag=tag),
+                date=fnc.tag_ep_date(tag=tag),
+                notes=fnc.tag_notes(tag=tag),
+                links=fnc.tag_links(tag=tag),
+                number=fnc.tag_ep_num(tag=tag),
+            )
         )
 
 

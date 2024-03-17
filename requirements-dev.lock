@@ -20,7 +20,7 @@ iniconfig==2.0.0
 loguru==0.7.2
 multidict==6.0.4
 packaging==23.2
-pawsupport @ git+https://github.com/pawrequest/pawsupport
+suppawt @ git+https://github.com/pawrequest/suppawt
 pluggy==1.3.0
 pydantic==2.5.3
 pydantic-core==2.14.6

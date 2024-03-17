@@ -1,5 +1,5 @@
 [project]
-name = "soupscraper"
+name = "scrapaw"
 version = "0.1.0"
 description = "Scrape Episodes"
 authors = [
@@ -11,7 +11,7 @@ dependencies = [
     "loguru",
     "beautifulsoup4",
     "python-dateutil",
-    "pawsupport",
+    "suppawt",
 ]
 readme = "index.rst"
 requires-python = ">= 3.12"

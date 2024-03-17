@@ -4,7 +4,7 @@ import aiohttp
 import bs4
 from bs4 import Tag
 
-from scrapaw import get_soup
+from .. import get_soup
 
 
 # Utility
