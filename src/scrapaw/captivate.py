@@ -3,7 +3,7 @@ import typing as _t
 import aiohttp
 import bs4
 
-from scrapaw import get_soup
+from soupaw import get_soup
 
 
 def get_listing_urls(url, num_pages) -> list[str]:

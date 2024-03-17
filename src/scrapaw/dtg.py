@@ -1,11 +1,11 @@
+import functools
 import typing as _t
 
 import aiohttp
 import bs4
-import pydantic as _p
 
-from DecodeTheBot.core import consts
-from . import abs, captivate, get_soup
+from . import abs, captivate
+from soupaw import get_soup
 
 
 class DTGEpisode(abs.Episode):
@@ -22,41 +22,6 @@ class DTGEpisode(abs.Episode):
                 number=ep_soup_num(tag=tag),
             )
         )
-
-
-class DTGPodcast(abs.Podcast):
-    name: _t.ClassVar[str] = 'Decoding The Gurus'
-    base_url: _t.ClassVar[str] = consts.PODCAST_URL,
-    episodes: list[DTGEpisode] = _p.Field(default_factory=list)
-
-    async def all_urls(self) -> list[str]:
-        return await captivate.listing_urls_from_url(self.base_url)
-
-    async def get_episodes(
-            self,
-            limit: int | None = None,
-            session_h: aiohttp.ClientSession | None = None,
-            max_dupes: int = None,
-            dupe_mode: _t.Literal['allow', 'forbid', 'ignore'] = 'forbid',
-    ) -> _t.AsyncGenerator[DTGEpisode, None]:
-        session_h = session_h or aiohttp.ClientSession()
-        ep_count = 0
-        async for episode_url in captivate.episode_urls_from_url(
-                self.base_url,
-                h_session=session_h
-        ):
-            if limit and ep_count >= limit:
-                break
-            if episode_url in [ep.url for ep in self.episodes]:
-                if dupe_mode == 'allow':
-                    pass
-                elif dupe_mode == 'ignore':
-                    continue
-                else:
-                    raise abs.DupeError(f'Duplicate episode found: {episode_url}')
-            ep = await DTGEpisode.from_url(episode_url)
-            ep_count += 1
-            yield ep
 
 
 def ep_soup_notes(tag: bs4.Tag) -> list[str]:
@@ -109,19 +74,21 @@ async def get_episodes_fnc(
         yield ep
 
 
-async def get_episodes_blind(
-        base_url: str,
-        limit: int | None = None,
-        session_h: aiohttp.ClientSession | None = None,
-) -> _t.AsyncGenerator[DTGEpisode, None]:
-    session_h = session_h or aiohttp.ClientSession()
-    ep_count = 0
-    async for episode_url in captivate.episode_urls_from_url(
-            base_url,
-            h_session=session_h
-    ):
-        if limit and ep_count >= limit:
-            break
-        ep = await DTGEpisode.from_url(episode_url)
-        ep_count += 1
-        yield ep
+get_episodes_blind = functools.partial(get_episodes_fnc, dupe_mode='ignore', existing_eps=[])
+
+# async def get_episodes_blind(
+#         base_url: str,
+#         limit: int | None = None,
+#         session_h: aiohttp.ClientSession | None = None,
+# ) -> _t.AsyncGenerator[DTGEpisode, None]:
+#     session_h = session_h or aiohttp.ClientSession()
+#     ep_count = 0
+#     async for episode_url in captivate.episode_urls_from_url(
+#             base_url,
+#             h_session=session_h
+#     ):
+#         if limit and ep_count >= limit:
+#             break
+#         ep = await DTGEpisode.from_url(episode_url)
+#         ep_count += 1
+#         yield ep
