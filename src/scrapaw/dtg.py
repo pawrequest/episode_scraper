@@ -8,7 +8,7 @@ from . import abs, captivate
 from soupaw import get_soup
 
 
-class DTGEpisode(abs.Episode):
+class EpisodeBase(abs.Episode):
     @classmethod
     async def from_url(cls, url, session: aiohttp.ClientSession | None = None) -> _t.Self:
         tag = await get_soup.soup_from_url(url=url, session=session)
@@ -49,11 +49,11 @@ def ep_soup_title(tag: bs4.Tag) -> str:
 
 async def get_episodes_fnc(
         base_url: str,
-        existing_eps: list[DTGEpisode],
+        existing_eps: list[EpisodeBase],
         limit: int | None = None,
         session_h: aiohttp.ClientSession | None = None,
         dupe_mode: _t.Literal['allow', 'forbid', 'ignore'] = 'forbid',
-) -> _t.AsyncGenerator[DTGEpisode, None]:
+) -> _t.AsyncGenerator[EpisodeBase, None]:
     session_h = session_h or aiohttp.ClientSession()
     ep_count = 0
     async for episode_url in captivate.episode_urls_from_url(
@@ -69,7 +69,7 @@ async def get_episodes_fnc(
                 continue
             else:
                 raise abs.DupeError(f'Duplicate episode found: {episode_url}')
-        ep = await DTGEpisode.from_url(episode_url)
+        ep = await EpisodeBase.from_url(episode_url)
         ep_count += 1
         yield ep
 

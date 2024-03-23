@@ -1,8 +1,8 @@
-from .dtg import DTGEpisode
+from .dtg import EpisodeBase
 from .writers import HtmlWriter, RPostWriter, RWikiWriter
 
 __all__ = [
-    "DTGEpisode",
+    "EpisodeBase",
     "HtmlWriter",
     "RPostWriter",
     "RWikiWriter",
