@@ -3,12 +3,22 @@ import typing as _t
 
 import aiohttp
 import bs4
+import pydantic as _p
+import datetime as dt
 
-from . import abs, captivate
-from soupaw import get_soup
+from dateutil import parser
+
+from . import pod_abs, captivate, get_soup
 
 
-class EpisodeBase(abs.Episode):
+class EpisodeBase(_p.BaseModel):
+    title: str
+    url: str
+    date: dt.date
+    notes: list[str]
+    links: dict[str, str]
+    number: str
+
     @classmethod
     async def from_url(cls, url, session: aiohttp.ClientSession | None = None) -> _t.Self:
         tag = await get_soup.soup_from_url(url=url, session=session)
@@ -39,8 +49,9 @@ def ep_soup_num(tag: bs4.Tag) -> str:
     return captivate.select_text(tag, ".episode-info").split()[1]
 
 
-def ep_soup_date(tag: bs4.Tag) -> str:
-    return captivate.select_text(tag, ".publish-date")
+def ep_soup_date(tag: bs4.Tag) -> dt.date:
+    datestr = captivate.select_text(tag, ".publish-date")
+    return parser.parse(datestr).date()
 
 
 def ep_soup_title(tag: bs4.Tag) -> str:
@@ -68,7 +79,7 @@ async def get_episodes_fnc(
             elif dupe_mode == 'ignore':
                 continue
             else:
-                raise abs.DupeError(f'Duplicate episode found: {episode_url}')
+                raise pod_abs.DupeError(f'Duplicate episode found: {episode_url}')
         ep = await EpisodeBase.from_url(episode_url)
         ep_count += 1
         yield ep

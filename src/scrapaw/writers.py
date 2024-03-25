@@ -4,18 +4,18 @@ from typing import Sequence
 
 from loguru import logger
 
-from . import _write_abs, abs, consts
+from . import _write_abs, pod_abs, consts
 
 
 class HtmlWriter(_write_abs.EpisodeWriterABC):
-    def _contents(self, eps: Sequence[abs.Episode] = None) -> str:
+    def _contents(self, eps: Sequence[pod_abs.Episode] = None) -> str:
         eps = eps or self.episodes
         toc = "<h2>Table of Contents</h2>\n"
         for i, ep in enumerate(eps):
             toc += f"<a href='#ep-{i}'>{ep.title}</a><br>\n"
         return toc
 
-    def _post_head_text(self, episode: abs.Episode) -> str:
+    def _post_head_text(self, episode: pod_abs.Episode) -> str:
         text = f"""
             <!DOCTYPE html>
             <html lang="en">
@@ -29,7 +29,7 @@ class HtmlWriter(_write_abs.EpisodeWriterABC):
         text += self._contents(self.episodes)
         return text
 
-    def _title_text(self, episode: abs.Episode, ep_id="") -> str:
+    def _title_text(self, episode: pod_abs.Episode, ep_id="") -> str:
         return f"<h1 id='ep-{str(ep_id)}'>{episode.title}</h1>\n<a href='{episode.url}'>Play on Captivate.fm</a>\n"
 
     def _date_text(self, date_pub) -> str:
@@ -55,10 +55,10 @@ class HtmlWriter(_write_abs.EpisodeWriterABC):
 
 
 class RPostWriter(_write_abs.EpisodeWriterABC):
-    def _post_head_text(self, episode: abs.Episode) -> str:
+    def _post_head_text(self, episode: pod_abs.Episode) -> str:
         return ""
 
-    def _title_text(self, episode: abs.Episode) -> str:
+    def _title_text(self, episode: pod_abs.Episode) -> str:
         return f"## [{episode.title}]({episode.url})\n \n"
 
     def _date_text(self, date_pub) -> str:
@@ -84,10 +84,10 @@ class RPostWriter(_write_abs.EpisodeWriterABC):
 
 
 class RWikiWriter(_write_abs.EpisodeWriterABC):
-    def _post_head_text(self, episode: abs.Episode) -> str:
+    def _post_head_text(self, episode: pod_abs.Episode) -> str:
         return ""
 
-    def _title_text(self, episode: abs.Episode) -> str:
+    def _title_text(self, episode: pod_abs.Episode) -> str:
         return f"### [{episode.title}]({episode.url})\n \n"
 
     def _date_text(self, date_pub) -> str:
@@ -112,7 +112,7 @@ class RWikiWriter(_write_abs.EpisodeWriterABC):
         return "\n \n --- \n \n"
 
 
-async def episode_subreddit_post_text(episode: abs.Episode) -> tuple[str, str]:
+async def episode_subreddit_post_text(episode: pod_abs.Episode) -> tuple[str, str]:
     try:
         title = f"NEW EPISODE: {episode.title}"
         writer = RPostWriter(episode)
