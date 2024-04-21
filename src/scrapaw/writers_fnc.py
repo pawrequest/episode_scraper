@@ -57,10 +57,10 @@ def html_post_tail_text() -> str:
 
 
 class RPostWriter(_write_abs.EpisodeWriterABC):
-    def _post_head_text(self, episode: abs.Episode) -> str:
+    def _post_head_text(self, episode: pod_abs.Episode) -> str:
         return ''
 
-    def _title_text(self, episode: abs.Episode) -> str:
+    def _title_text(self, episode: pod_abs.Episode) -> str:
         return f'## [{episode.title}]({episode.url})\n \n'
 
     def _date_text(self, date_pub) -> str:
@@ -86,10 +86,10 @@ class RPostWriter(_write_abs.EpisodeWriterABC):
 
 
 class RWikiWriter(_write_abs.EpisodeWriterABC):
-    def _post_head_text(self, episode: abs.Episode) -> str:
+    def _post_head_text(self, episode: pod_abs.Episode) -> str:
         return ''
 
-    def _title_text(self, episode: abs.Episode) -> str:
+    def _title_text(self, episode: pod_abs.Episode) -> str:
         return f'### [{episode.title}]({episode.url})\n \n'
 
     def _date_text(self, date_pub) -> str:
@@ -114,7 +114,7 @@ class RWikiWriter(_write_abs.EpisodeWriterABC):
         return '\n \n --- \n \n'
 
 
-async def episode_subreddit_post_text(episode: abs.Episode) -> tuple[str, str]:
+async def episode_subreddit_post_text(episode: pod_abs.Episode) -> tuple[str, str]:
     try:
         title = f'NEW EPISODE: {episode.title}'
         writer = RPostWriter(episode)
