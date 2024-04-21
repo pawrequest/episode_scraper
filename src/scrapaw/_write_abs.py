@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Sequence
 
 from scrapaw import pod_abs
+
 
 class EpisodeWriterABC(ABC):
     def __init__(self, *episodes: pod_abs.Episode):
@@ -12,18 +12,18 @@ class EpisodeWriterABC(ABC):
     def write_many(self, eps=None) -> str:
         eps = eps or self.episodes
         text = self._post_head_text(eps)
-        text += "".join([self.write_one(ep) for ep in eps])
+        text += ''.join([self.write_one(ep) for ep in eps])
         text += self._post_tail_text()
         return text
 
     def write_one(self, episode: pod_abs.Episode = None) -> str:
         if len(self.episodes) != 1:
-            raise ValueError(f"No episode provided and {len(self.episodes)} episodes in writer.")
+            raise ValueError(f'No episode provided and {len(self.episodes)} episodes in writer.')
         episode = episode or self.episodes[0]
         text = self._title_text(episode)
-        text += self._date_text(episode.date.strftime("%A %B %d %Y"))
-        text += self._notes_text(episode.notes) or ""
-        text += self._links_text(episode.links) or ""
+        text += self._date_text(episode.date.strftime('%A %B %d %Y'))
+        text += self._notes_text(episode.notes) or ''
+        text += self._links_text(episode.links) or ''
         text += self._ep_tail_text()
         return text
 

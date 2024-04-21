@@ -1,8 +1,7 @@
 # from __future__ import annotations
 
-import inspect
 from datetime import datetime
-from typing import Dict, List, Optional, Sequence
+from typing import Optional
 
 from dateutil import parser
 from loguru import logger
@@ -12,48 +11,48 @@ try:
     from sqlalchemy import Column
     from sqlmodel import Field, JSON, SQLModel
 except ImportError:
-    logger.error("sqlmodel not installed")
+    logger.error('sqlmodel not installed')
     raise ImportError
 
-MAYBE_ATTRS = ["title", "notes", "links", "date"]
+MAYBE_ATTRS = ['title', 'notes', 'links', 'date']
 
 
 class EpisodeBase(SQLModel):
     url: str = Field(index=True)
     title: str = Field(index=True)
-    notes: List[str] = Field(default=None, sa_column=Column(JSON))
-    links: Dict[str, str] = Field(default=None, sa_column=Column(JSON))
+    notes: list[str] = Field(default=None, sa_column=Column(JSON))
+    links: dict[str, str] = Field(default=None, sa_column=Column(JSON))
     date: Optional[datetime] = Field(default=None)
     episode_number: Optional[str] = Field(default=None)
 
-    @field_validator("episode_number", mode="before")
+    @field_validator('episode_number', mode='before')
     def ep_number_is_str(cls, v) -> str:
         return str(v)
 
-    @field_validator("date", mode="before")
+    @field_validator('date', mode='before')
     def parse_date(cls, v) -> datetime:
         if isinstance(v, str):
             try:
-                v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S")
+                v = datetime.strptime(v, '%Y-%m-%dT%H:%M:%S')
             except Exception:
                 v = parser.parse(v)
         return v
 
     def log_str(self) -> str:
         if self.title and self.date:
-            return f"\t\t<green>{self.date.date()}</green> - <bold><cyan>{self.title}</cyan></bold>"
+            return f'\t\t<green>{self.date.date()}</green> - <bold><cyan>{self.title}</cyan></bold>'
         else:
-            return f"\t\t{self.url}"
+            return f'\t\t{self.url}'
 
     def __str__(self):
-        return f"{self.__class__.__name__}: {self.title or self.url}"
+        return f'{self.__class__.__name__}: {self.title or self.url}'
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}({self.url})>"
+        return f'<{self.__class__.__name__}({self.url})>'
 
     @property
     def slug(self):
-        raise NotImplementedError("Implement in subclass")
+        raise NotImplementedError('Implement in subclass')
 
     # @classmethod
     # def log_episodes(cls, eps: Sequence["EpisodeBase"], calling_func=None, msg: str = ""):
@@ -72,7 +71,7 @@ class EpisodeBase(SQLModel):
 
 class EpisodeMeta(BaseModel):
     length: int
-    msg: str = ""
+    msg: str = ''
 
 
 # def episodes_log_msg(eps: Sequence[EpisodeBase]) -> str:
@@ -113,4 +112,4 @@ class Episode(EpisodeBase, table=True):
 
     @property
     def slug(self):
-        return f"/eps/{self.id}"
+        return f'/eps/{self.id}'

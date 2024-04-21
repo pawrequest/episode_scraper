@@ -3,15 +3,15 @@ import asyncio
 import aiohttp
 import pytest
 import pytest_asyncio
+from scrapaw.concrete import DTGScraper
 
 from scrapaw import EpisodeDC
-from scrapaw.concrete import DTGScraper
 
 
 @pytest_asyncio.fixture
 async def scraper_fxt():
     async with aiohttp.ClientSession() as http_session:
-        yield DTGScraper("https://decoding-the-gurus.captivate.fm/", http_session)
+        yield DTGScraper('https://decoding-the-gurus.captivate.fm/', http_session)
 
 
 @pytest.mark.asyncio
@@ -31,6 +31,7 @@ async def test_scraper_run(scraper_fxt):
 @pytest.mark.asyncio
 async def test_scraper_go_gen(scraper_fxt):
     ...
+
 
 @pytest.mark.asyncio
 async def test_scraper_gn(scraper_fxt: DTGScraper):

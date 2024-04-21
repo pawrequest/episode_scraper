@@ -1,6 +1,6 @@
 import pytest
 
-from scrapaw.pyd import dtg_fnc, dtg_pyd
+from scrapaw.pyd import dtg_pyd
 
 import scrapaw.captivate_fncs
 
@@ -33,4 +33,3 @@ async def test_podcast():
     async for ep3 in pod.get_episodes(limit=3, max_dupes=3):
         assert isinstance(ep3, dtg_pyd.EpisodeBase)
     assert len(pod.episodes) == 6
-

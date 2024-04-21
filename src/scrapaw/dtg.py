@@ -1,14 +1,13 @@
 import functools
 import typing as _t
+import datetime as dt
 
 import aiohttp
 import bs4
 import pydantic as _p
-import datetime as dt
-
 from dateutil import parser
 
-from . import pod_abs, captivate, get_soup
+from . import captivate, get_soup, pod_abs
 
 
 class EpisodeBase(_p.BaseModel):
@@ -35,27 +34,27 @@ class EpisodeBase(_p.BaseModel):
 
 
 def ep_soup_notes(tag: bs4.Tag) -> list[str]:
-    paragraphs = tag.select(".show-notes p")
-    return [p.text for p in paragraphs if p.text != "Links"]
+    paragraphs = tag.select('.show-notes p')
+    return [p.text for p in paragraphs if p.text != 'Links']
 
 
 def ep_soup_links(tag: bs4.Tag) -> dict[str, str]:
-    show_links_html = tag.select(".show-notes a")
-    return {_.text: _["href"] for _ in show_links_html}
+    show_links_html = tag.select('.show-notes a')
+    return {_.text: _['href'] for _ in show_links_html}
 
 
 def ep_soup_num(tag: bs4.Tag) -> str:
     """string because 'bonus' episodes are not numbered"""
-    return captivate.select_text(tag, ".episode-info").split()[1]
+    return captivate.select_text(tag, '.episode-info').split()[1]
 
 
 def ep_soup_date(tag: bs4.Tag) -> dt.date:
-    datestr = captivate.select_text(tag, ".publish-date")
+    datestr = captivate.select_text(tag, '.publish-date')
     return parser.parse(datestr).date()
 
 
 def ep_soup_title(tag: bs4.Tag) -> str:
-    return captivate.select_text(tag, ".episode-title")
+    return captivate.select_text(tag, '.episode-title')
 
 
 async def get_episodes_fnc(

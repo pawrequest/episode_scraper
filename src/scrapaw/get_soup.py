@@ -6,7 +6,7 @@ from aiohttp import ClientError, ClientSession
 
 async def soup_from_url(url: str, session: ClientSession | None = None) -> bs4.BeautifulSoup:
     html = await response_(url, session)
-    return bs4.BeautifulSoup(html, "html.parser")
+    return bs4.BeautifulSoup(html, 'html.parser')
 
 
 async def response_(url: str, http_session: ClientSession | None = None) -> str:
@@ -31,8 +31,8 @@ async def _get_response(url: str, http_session: ClientSession) -> str:
                 response.raise_for_status()
                 return await response.text()
         except ClientError as e:
-            print(f"Request failed: {e}")
+            print(f'Request failed: {e}')
             await asyncio.sleep(2)
             continue
     else:
-        raise ClientError("Request failed 3 times")
+        raise ClientError('Request failed 3 times')
