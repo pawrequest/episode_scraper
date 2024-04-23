@@ -2,7 +2,7 @@ import typing as _t
 
 import aiohttp
 import bs4
-
+from pydantic import HttpUrl
 from scrapaw import get_soup
 
 
@@ -30,7 +30,7 @@ def tag_url(tag: bs4.Tag) -> str:
     return select_link(tag, '.episode-title a')
 
 
-async def episode_urls_from_url(url, h_session: aiohttp.ClientSession | None = None) -> \
+async def episode_urls_from_url(url:str, h_session: aiohttp.ClientSession | None = None) -> \
         _t.AsyncGenerator[str, None]:
     listing_urls = await listing_urls_from_url(url)
     for listing_url in listing_urls:
@@ -39,7 +39,7 @@ async def episode_urls_from_url(url, h_session: aiohttp.ClientSession | None = N
             yield tag_url(tag)
 
 
-async def listing_urls_from_url(url) -> list[str]:
+async def listing_urls_from_url(url:str) -> list[str]:
     soup = await get_soup.soup_from_url(url)
     num_pgs = num_pages(soup)
     return get_listing_urls(url, num_pgs)
