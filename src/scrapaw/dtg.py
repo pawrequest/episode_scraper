@@ -1,6 +1,8 @@
 import functools
+import hashlib
 import typing as _t
 import datetime as dt
+
 import aiohttp
 import bs4
 import pydantic as _p
@@ -17,6 +19,13 @@ class EpisodeBase(_p.BaseModel):
     notes: list[str]
     links: dict[str, str]
     number: str
+
+    @_p.computed_field
+    @property
+    def get_hash(self) -> str:
+        return hashlib.md5(
+            ','.join([self.title, self.date.isoformat()]).encode('utf-8')
+        ).hexdigest()
 
     @classmethod
     async def from_url(cls, url, session: aiohttp.ClientSession | None = None) -> _t.Self:
@@ -57,32 +66,39 @@ def ep_soup_title(tag: bs4.Tag) -> str:
     return captivate.select_text(tag, ".episode-title")
 
 
-async def get_episodes_fnc(
-    base_url: str,
-    existing_eps: list[EpisodeBase],
-    limit: int | None = None,
-    session_h: aiohttp.ClientSession | None = None,
-    dupe_mode: _t.Literal["allow", "forbid", "ignore", "limited"] = "forbid",
+async def episode_generator(
+        base_url: str,
+        existing_eps: list[EpisodeBase] = None,
+        limit: int | None = None,
+        session_h: aiohttp.ClientSession | None = None,
+        dupe_mode: _t.Literal["allow", "forbid", "ignore", "limited"] = "limited",
+        max_dupe: int = 3,
 ) -> _t.AsyncGenerator[EpisodeBase, None]:
     try:
+        existing_eps = existing_eps or []
         session_h = session_h or aiohttp.ClientSession()
         ep_count = 0
+        dupes = 0
         async for episode_url in captivate.episode_urls_from_url(base_url, h_session=session_h):
             ep_count += 1
             if limit is not None and ep_count >= limit:
                 break
             if episode_url in [ep.url for ep in existing_eps]:
+                dupes += 1
                 if dupe_mode == "allow":
                     pass
                 elif dupe_mode == "ignore":
                     continue
-                elif dupe_mode == "forbid":
+                elif dupe_mode == "limited":
+                    if dupes > max_dupe:
+                        raise pod_abs.MaxDupeError(f"Max Duplicate Episodes Reached: {max_dupe}")
+                else:
                     raise pod_abs.DupeError(f"Duplicate episode found: {episode_url}")
             ep = await EpisodeBase.from_url(episode_url)
             yield ep
-    except Exception as e:
+    except Exception:
         logger.exception("Error getting episodes")
         raise pod_abs.SrapeError("Error getting episodes")
 
 
-get_episodes_blind = functools.partial(get_episodes_fnc, dupe_mode="ignore", existing_eps=[])
+get_episodes_blind = functools.partial(episode_generator, dupe_mode="ignore", existing_eps=[])
