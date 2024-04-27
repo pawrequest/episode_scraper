@@ -81,3 +81,7 @@ class MaxDupeError(Exception):
 async def dupes_not_exceeded(dupes):
     if dupes > MAX_DUPES:
         raise MaxDupeError(f'Found {dupes} duplicates, stopping')
+
+
+class SrapeError(Exception):
+    pass
