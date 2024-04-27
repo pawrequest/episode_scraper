@@ -6,10 +6,12 @@ import datetime as dt
 import aiohttp
 import bs4
 import pydantic as _p
+from anyio import EndOfStream
 from dateutil import parser
 from loguru import logger
 
 from . import captivate, get_soup, pod_abs
+from .scrapaw_config import ScrapawConfig
 
 
 class EpisodeBase(_p.BaseModel):
@@ -66,7 +68,7 @@ def ep_soup_title(tag: bs4.Tag) -> str:
     return captivate.select_text(tag, ".episode-title")
 
 
-async def episode_generator(
+async def episode_generator1(
         base_url: str,
         existing_eps: list[EpisodeBase] = None,
         limit: int | None = None,
@@ -91,9 +93,11 @@ async def episode_generator(
                     continue
                 elif dupe_mode == "limited":
                     if dupes > max_dupe:
-                        raise pod_abs.MaxDupeError(f"Max Duplicate Episodes Reached: {max_dupe}")
+                        raise EndOfStream(f"Max Duplicate Episodes Reached: {max_dupe}")
                 else:
-                    raise pod_abs.DupeError(f"Duplicate episode found: {episode_url}")
+                    raise ValueError(
+                        f"Duplicate episode found with mode {dupe_mode}: {episode_url}"
+                    )
             ep = await EpisodeBase.from_url(episode_url)
             yield ep
     except Exception:
@@ -101,4 +105,21 @@ async def episode_generator(
         raise pod_abs.SrapeError("Error getting episodes")
 
 
-get_episodes_blind = functools.partial(episode_generator, dupe_mode="ignore", existing_eps=[])
+async def episode_generator(config: ScrapawConfig, http_session) -> _t.AsyncGenerator[EpisodeBase, None]:
+    try:
+        http_session = http_session
+        ep_count = 0
+        async for episode_url in captivate.episode_urls_from_url(
+                str(config.db_loc),
+                h_session=http_session
+        ):
+            ep_count += 1
+            if config.scrape_limit is not None and ep_count >= config.scrape_limit:
+                break
+            ep = await EpisodeBase.from_url(episode_url)
+            yield ep
+    except Exception as e:
+        logger.exception(f"Error getting episodes {str(e.args)}")
+        raise e
+
+

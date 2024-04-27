@@ -6,12 +6,12 @@ from loguru import logger
 from sqlalchemy import create_engine
 from sqlmodel import Session
 
-from .scrapaw_config import scrapaw_settings
+from ..scrapaw_config import scrapaw_sett
 
 
 @functools.lru_cache
 def get_db_url():
-    sett = scrapaw_settings()
+    sett = scrapaw_sett()
     logger.info(f"USING DB FILE: {sett.db_loc}")
     db_path = pathlib.Path(sett.db_loc)
     return f"sqlite:///{db_path}"

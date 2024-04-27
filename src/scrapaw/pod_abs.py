@@ -74,13 +74,16 @@ class DupeError(Exception):
     ...
 
 
-class MaxDupeError(Exception):
+class MaxDupe(Exception):
     ...
+
+
+type EndOfStream = object
 
 
 async def dupes_not_exceeded(dupes):
     if dupes > MAX_DUPES:
-        raise MaxDupeError(f'Found {dupes} duplicates, stopping')
+        raise MaxDupe(f'Found {dupes} duplicates, stopping')
 
 
 class SrapeError(Exception):

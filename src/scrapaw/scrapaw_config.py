@@ -24,5 +24,5 @@ class ScrapawConfig(BaseSettings):
 
 
 @lru_cache
-def scrapaw_settings():
+def scrapaw_sett():
     return ScrapawConfig()
