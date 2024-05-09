@@ -1,4 +1,3 @@
-import hashlib
 import typing as _t
 import datetime as dt
 
@@ -25,13 +24,6 @@ class EpisodeBase(_p.BaseModel):
 
     def __eq__(self, other):
         return self.title == other.title and self.date == other.date
-
-    @_p.computed_field
-    @property
-    def get_hash(self) -> str:
-        return hashlib.md5(
-            ','.join([self.title, self.date.isoformat()]).encode('utf-8')
-        ).hexdigest()
 
     @classmethod
     async def from_url(cls, url, session: aiohttp.ClientSession | None = None) -> _t.Self:
