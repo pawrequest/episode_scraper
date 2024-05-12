@@ -4,8 +4,8 @@ import bs4
 from aiohttp import ClientError, ClientSession
 
 
-async def soup_from_url(url: str, session: ClientSession | None = None) -> bs4.BeautifulSoup:
-    html = await response_(url, session)
+async def soup_from_url(url: str, http_session: ClientSession) -> bs4.BeautifulSoup:
+    html = await response_(url, http_session)
     return bs4.BeautifulSoup(html, 'html.parser')
 
 
