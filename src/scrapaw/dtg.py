@@ -18,6 +18,7 @@ class EpisodeBase(_p.BaseModel):
     notes: list[str]
     links: dict[str, str]
     number: str
+    # show_notes_html: str | None = None
 
     def __hash__(self):
         return hash((self.title, self.date.isoformat()))
@@ -36,6 +37,7 @@ class EpisodeBase(_p.BaseModel):
                 notes=ep_soup_notes(tag=tag),
                 links=ep_soup_links(tag=tag),
                 number=ep_soup_num(tag=tag),
+                # show_notes_html=str(tag.select_one('.show-notes')),
             )
         )
 
