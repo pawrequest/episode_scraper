@@ -10,8 +10,7 @@ from loguru import logger
 from . import captivate, get_soup
 from .scrapaw_config import ScrapawConfig
 
-# TODO: TIMESTAMP TYPE: css class = 'cp-timestamp'
-# TODO: SHOWNOTES work properly!
+# TODO: TIMESTAMP TYPE and link to play at that timestamp(css class = 'cp-timestamp')
 
 class EpisodeBase(_p.BaseModel):
     title: str
