@@ -12,6 +12,7 @@ from .scrapaw_config import ScrapawConfig
 
 # TODO: TIMESTAMP TYPE and link to play at that timestamp(css class = 'cp-timestamp')
 
+
 class EpisodeBase(_p.BaseModel):
     title: str
     url: str
