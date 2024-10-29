@@ -10,6 +10,8 @@ from loguru import logger
 from . import captivate, get_soup
 from .scrapaw_config import ScrapawConfig
 
+# TODO: TIMESTAMP TYPE: css class = 'cp-timestamp'
+# TODO: SHOWNOTES work properly!
 
 class EpisodeBase(_p.BaseModel):
     title: str
@@ -44,11 +46,12 @@ class EpisodeBase(_p.BaseModel):
 
 def ep_soup_notes(tag: bs4.Tag) -> list[str]:
     paragraphs = tag.select('.show-notes p')
-    return [p.text for p in paragraphs if p.text != 'Links']
+    return [p.text for p in paragraphs if p.text != 'Links' and not p.find('a', class_='cp-timestamp')]
 
 
 def ep_soup_links(tag: bs4.Tag) -> dict[str, str]:
     show_links_html = tag.select('.show-notes a')
+    show_links_html = [_ for _ in show_links_html if 'cp-timestamp' not in _.get('class', [])]
     return {_.text: _['href'] for _ in show_links_html}
 
 
