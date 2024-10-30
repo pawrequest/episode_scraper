@@ -11,7 +11,6 @@ dependencies = [
     "loguru",
     "beautifulsoup4",
     "python-dateutil",
-#    "suppawt",
 ]
 readme = "index.rst"
 requires-python = ">= 3.12"
@@ -29,12 +28,6 @@ docs = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.rye]
-managed = true
-dev-dependencies = [
-    'pytest',
-    'pytest-asyncio',
-]
 
 [tool.hatch.metadata]
 allow-direct-references = true
