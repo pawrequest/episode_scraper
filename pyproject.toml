@@ -1,6 +1,6 @@
 [project]
 name = "scrapaw"
-version = "0.1.0"
+version = "0.2.0"
 description = "Scrape Episodes"
 authors = [
     { name = "paw", email = "paw@pawrequest.com" }
